@@ -1,0 +1,9 @@
+.conversation-container{
+
+   height: 100vh;
+   background-image: url("./images/whatsapp_wallpaper.png");
+   background-size: contain;
+   position: relative;
+   overflow: hidden;
+ 
+}

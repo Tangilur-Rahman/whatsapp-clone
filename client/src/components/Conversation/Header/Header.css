@@ -1,0 +1,23 @@
+.conversation-header{
+   background-color: #ededed;
+   height: 55px;
+   display: flex;
+   align-items: center;
+   margin: 0px;
+
+   border-left: 1px solid rgb(201, 191, 191);
+}
+
+.conversation-header img{
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   border-radius: 50%;
+   margin: 0 0 0 15px;
+}
+
+.conversation-header h6{
+   margin: 0 0 0 8px;
+   letter-spacing: 2px;
+   word-spacing: 8px;
+}

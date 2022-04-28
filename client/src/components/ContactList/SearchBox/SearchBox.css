@@ -1,0 +1,40 @@
+.search-box-container{
+   height: 60px;
+   background: #f7f2f2;
+   display: flex;
+ 
+   align-items: center;
+  
+   
+}
+
+.search-box-container form{
+   width: 100%;
+}
+
+.search-box{
+   background-color: white;
+   padding: 10px;
+   border-radius: 14px;
+   margin: 0 0 0 11px;
+   flex-grow: 6;
+   width: 96%;
+}
+
+.search-box .icon{
+
+   opacity: .7;
+   font-size: 16px;
+
+}
+
+.search-box input{
+   border: none;
+   width: 85%;
+   margin: 0 0 0 13px;
+   letter-spacing: 1px;
+}
+
+.search-box input:focus{
+   outline: none;
+}
