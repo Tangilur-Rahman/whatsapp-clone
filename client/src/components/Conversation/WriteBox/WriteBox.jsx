@@ -23,7 +23,7 @@ const WriteBox = () => {
 							/>
 						</div>
 
-						<button type="submit">Send</button>
+						<button className="btn btn-success" type="submit">Send</button>
 					</form>
 				</div>
 			</div>

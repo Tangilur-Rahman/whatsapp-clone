@@ -1,6 +1,6 @@
 .chat-list-container{
    margin: 15px 0 0 0;
-   height: 83vh;
+   height: 80vh;
    overflow-y: auto;
 }
 .chat-item{
@@ -9,8 +9,12 @@
    margin: 0 0 0 12px;
    border-bottom: 1px solid #f2f2f2;
    padding: 0 0 25px 0;
+   cursor: pointer;
 }
 
+.chat-item:hover{
+   background-color: #ebebeb;
+}
 .chat-item .profile {
    display: flex;
    

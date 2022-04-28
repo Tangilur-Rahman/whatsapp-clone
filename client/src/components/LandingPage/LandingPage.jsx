@@ -1,6 +1,6 @@
-import "./LandingPage.css";
 import ContactList from "../ContactList/ContactList";
 import Conversation from "../Conversation/Conversation";
+import "./LandingPage.css";
 
 const LandingPage = () => {
 	return (

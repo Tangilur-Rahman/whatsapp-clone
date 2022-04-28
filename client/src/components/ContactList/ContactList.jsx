@@ -6,7 +6,7 @@ import SearchBox from "./SearchBox/SearchBox";
 const ContactList = () => {
 	return <>
    
-    <div className="container-fluid contact-container p-0">
+    <div className="container-fluid contact-container p-0 ">
        <Header />
        <SearchBox/>
        <ChatList/>

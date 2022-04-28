@@ -1,0 +1,27 @@
+.chat-box-container {
+   overflow: auto;
+   height: 84vh;
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+   margin: 9px 12px 0 29px;
+
+}
+
+.text-container p {
+   padding: 10px;
+   max-width: 50%;
+   border-radius: 4px;
+}
+
+.my-text {
+	background-color: #b9fbc0;
+	align-self: flex-end;
+}
+
+.other {
+	background-color: white;
+	align-self: flex-start;
+}
