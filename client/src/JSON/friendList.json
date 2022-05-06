@@ -1,0 +1,30 @@
+[
+   {
+     "id": 1,
+     "name": "Tangilur Rahman",
+     "profilePic": "/assets/profile/tangil2.jpg",
+     "lastText": "Hey Man",
+     "lastTextTime": "12:58 PM"
+   },
+   {
+     "id": 2,
+     "name": "Tamim",
+     "profilePic": "/assets/profile/avatar1.jpg",
+     "lastText": "Eid Mubaruk",
+     "lastTextTime": "12:45 PM"
+   },
+   {
+     "id": 3,
+     "name": "Shakil",
+     "profilePic": "/assets/profile/avatar2.jpg",
+     "lastText": "Have a nice Day",
+     "lastTextTime": "12:30 PM"
+   },
+   {
+     "id": 4,
+     "name": "Munir",
+     "profilePic": "/assets/profile/avatar3.jpg",
+     "lastText": "Call me",
+     "lastTextTime": "12:00 PM"
+   }
+ ]

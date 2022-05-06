@@ -1,52 +1,61 @@
-.write-box-container{
-   height: 60px;
-   background: #f7f2f2;
-   display: flex;
- 
-   align-items: center;
-   position: absolute;
-   bottom: 0;
- 
-  
-   
+.write-box-container {
+	height: 60px;
+	background: #f7f2f2;
+	display: flex;
+
+	align-items: center;
+	position: absolute;
+	bottom: 0;
 }
 
-.write-box-container form{
-   width: 100%;
-   display: flex;
-   justify-content: space-between;
+.write-box-container form {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 }
 
-.write-box{
-   background-color: white;
-   padding: 10px;
-   border-radius: 14px;
-   margin: 0 0 0 11px;
-   width: 75%;
-   display: flex;
- 
+.write-box {
+	background-color: white;
+	padding: 10px;
+	border-radius: 14px;
+	margin: 0 0 0 11px;
+	width: 75%;
+	display: flex;
 }
 
-.write-box .icon{
-
-   opacity: .6;
-   font-size: 25px;
-
+.write-box .icon {
+	opacity: 0.6;
+	font-size: 25px;
+	cursor: pointer;
 }
 
-.write-box input{
-   border: none;
-   width: 85%;
-   margin: 0 0 0 13px;
-   letter-spacing: 1px;
+.write-box .emoji {
+	width: 10%;
 }
 
-.write-box input:focus{
-   outline: none;
+.emoji-picker-react .emoji button {
+	justify-content: flex-start !important;
+	color: white !important;
 }
 
-.write-box button{
-   width: 140px;
-   margin: 0 38px 0 0;
-   font-size: 21px;
+.emoji-picker-react img.emoji-img:hover {
+	transform: scale(1.1);
+	transition: all 1s;
+}
+
+.write-box input {
+	border: none;
+	width: 85%;
+	margin: 0 0 0 13px;
+	letter-spacing: 1px;
+}
+
+.write-box input:focus {
+	outline: none;
+}
+
+form button {
+	width: 140px;
+	margin: 0 38px 0 0;
+	font-size: 21px;
 }

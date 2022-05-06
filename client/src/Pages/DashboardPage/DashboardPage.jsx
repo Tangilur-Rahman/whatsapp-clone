@@ -1,8 +1,8 @@
-import ContactList from "../ContactList/ContactList";
-import Conversation from "../Conversation/Conversation";
-import "./LandingPage.css";
+import ContactList from "../../components/ContactList/ContactList";
+import Conversation from "../../components/Conversation/Conversation";
+import "./DashboardPage.css";
 
-const LandingPage = () => {
+const DashboardPage = () => {
 	return (
 		<div className="container-fluid p-0">
 			<div className="row landing-page-container p-0 m-0">
@@ -17,4 +17,4 @@ const LandingPage = () => {
 	);
 };
 
-export default LandingPage;
+export default DashboardPage;
