@@ -58,7 +58,6 @@ const signupPost = async (req, res) => {
 				}
 			} catch (error) {
 				res.status(500).json({ error: "Invalid Email 😂" });
-				
 			}
 		} else {
 			res.status(401).json({ error: "Plz, Fill-up Properly 😂" });
