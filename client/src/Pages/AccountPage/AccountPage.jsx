@@ -2,30 +2,34 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import "./AccountPage.css";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./AccountPage.css";
 
 const HomePage = () => {
 	// navigate
 	const Navigate = useNavigate();
 
+	//  for image
+	const [profile, setProfile] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
+
+	// show/hide password
+	const [eye, setEye] = useState(true);
+	const eyeHandler = (event) => {
+		event.preventDefault();
+		setEye(!eye);
+	};
+
+	// signup part
 	const [signupData, setSignupData] = useState({
 		name: "",
 		email: "",
 		password: "",
 		c_password: ""
 	});
-	const [profile, setProfile] = useState("");
-	const [loginData, setLoginData] = useState({
-		email: "",
-		password: ""
-	});
-	const [eye, setEye] = useState(true);
-	const [isLoading, setIsLoading] = useState(false);
 
-	// signup part
 	const signupHandler = (input) => {
 		setSignupData({ ...signupData, [input.target.name]: input.target.value });
 	};
@@ -37,10 +41,9 @@ const HomePage = () => {
 
 		// upload image on cloudinary
 		if (
-			(profile.type === "image/jpeg" ||
-				profile.type === "image/png" ||
-				profile.type === "image/jpg") &&
-			profile !== undefined
+			profile.type === "image/jpeg" ||
+			profile.type === "image/png" ||
+			profile.type === "image/jpg"
 		) {
 			setIsLoading(true);
 
@@ -63,18 +66,21 @@ const HomePage = () => {
 				setIsLoading(false);
 				profileUrl = data.url.toString();
 			} catch (error) {
-				toast("Upload Your Image 📷", {
+				toast("Server Error! Try Again Latter 🙏", {
 					position: "top-right",
-					autoClose: 3000,
+					autoClose: 2000,
 					theme: "dark"
 				});
 			}
 		} else {
-			toast("Upload Your Image 📷", {
-				position: "top-right",
-				autoClose: 3000,
-				theme: "dark"
-			});
+			const { name, email, password, c_password } = signupData;
+			if (name && email && password && c_password) {
+				toast("Didn't Upload Profile Image 📷", {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+			}
 		}
 
 		// send data to server-side
@@ -93,47 +99,114 @@ const HomePage = () => {
 			if (res.status === 200) {
 				toast(result.message, {
 					position: "top-right",
-					autoClose: 3000,
+					autoClose: 2000,
 					theme: "dark"
 				});
 				setTimeout(() => {
 					return Navigate("/dashboard");
-				}, 4000);
+				}, 3000);
 			} else {
 				toast(result.error, {
 					position: "top-right",
-					autoClose: 3000,
+					autoClose: 2000,
 					theme: "dark"
 				});
 			}
 		} catch (error) {
 			toast("Server Error! Try Again Latter 🙏", {
 				position: "top-right",
-				autoClose: 3000,
+				autoClose: 2000,
 				theme: "dark"
 			});
 		}
 	};
 
 	// login part
+	const [loginData, setLoginData] = useState({
+		email: "",
+		password: ""
+	});
+
 	const loginHandler = (input) => {
 		setLoginData({ ...loginData, [input.target.name]: input.target.value });
 	};
 
-	const loginClickHandler = (event) => {
+	const loginClickHandler = async (event) => {
 		event.preventDefault();
+
+		try {
+			const response = await fetch("/login", {
+				method: "POST",
+				body: JSON.stringify({ ...loginData }),
+				headers: { "Content-Type": "application/json" }
+			});
+
+			const result = await response.json();
+
+			if (response.status === 200) {
+				toast(result.message, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+				setTimeout(() => {
+					return Navigate("/dashboard");
+				}, 3000);
+			} else {
+				toast(result.error, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+			}
+		} catch (error) {
+			toast("Server Error! Try Again Latter 🙏", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
+		}
 	};
 
-	const guestHandler = (event) => {
+	// for guest user
+	const guestHandler = async (event) => {
 		event.preventDefault();
 
-		setLoginData({ email: "guest@gmail.com", password: "guest123" });
-	};
+		try {
+			const response = await fetch("/login", {
+				method: "POST",
+				body: JSON.stringify({
+					email: "guest@gmail.com",
+					password: "guest123"
+				}),
+				headers: { "Content-Type": "application/json" }
+			});
 
-	// show/hide password
-	const eyeHandler = (event) => {
-		event.preventDefault();
-		setEye(!eye);
+			const result = await response.json();
+
+			if (response.status === 200) {
+				toast(result.message, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+				setTimeout(() => {
+					return Navigate("/dashboard");
+				}, 3000);
+			} else {
+				toast(result.error, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+			}
+		} catch (error) {
+			toast("Server Error! Try Again Latter 🙏", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
+		}
 	};
 
 	return (
@@ -237,6 +310,7 @@ const HomePage = () => {
 									placeholder="Password :"
 									required
 									onChange={loginHandler}
+									autoComplete="off"
 								/>
 
 								<button className="password-btn" onClick={eyeHandler}>
