@@ -61,7 +61,7 @@ const HomePage = () => {
 
 				const data = await response.json();
 				setIsLoading(false);
-				 profileUrl = data.url.toString();
+				profileUrl = data.url.toString();
 			} catch (error) {
 				toast("Upload Your Image 📷", {
 					position: "top-right",
@@ -99,15 +99,12 @@ const HomePage = () => {
 				setTimeout(() => {
 					return Navigate("/dashboard");
 				}, 4000);
-				
-
 			} else {
 				toast(result.error, {
 					position: "top-right",
 					autoClose: 3000,
 					theme: "dark"
 				});
-
 			}
 		} catch (error) {
 			toast("Server Error! Try Again Latter 🙏", {
