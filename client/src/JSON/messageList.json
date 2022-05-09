@@ -1,0 +1,44 @@
+[
+	{
+		"id": 1,
+		"messageType": "TEXT",
+		"message": "Hey Man 😁",
+		"senderID": 0,
+		"addedOn": "12:00 PM"
+	},
+	{
+		"id": 2,
+		"messageType": "TEXT",
+		"message": "Hey, What's up?",
+		"senderID": 1,
+		"addedOn": "12:01 PM"
+	},
+	{
+		"id": 3,
+		"messageType": "TEXT",
+		"message": "All Good, What about you?",
+		"senderID": 0,
+		"addedOn": "12:00 PM"
+	},
+	{
+		"id": 4,
+		"messageType": "TEXT",
+		"message": "I'm good as well",
+		"senderID": 1,
+		"addedOn": "12:00 PM"
+	},
+	{
+		"id": 5,
+		"messageType": "TEXT",
+		"message": "Great 😁",
+		"senderID": 0,
+		"addedOn": "12:00 PM"
+	},
+	{
+		"id": 5,
+		"messageType": "TEXT",
+		"message": "Have you subscribed The Indian Dev ?",
+		"senderID": 1,
+		"addedOn": "12:00 PM"
+	}
+]

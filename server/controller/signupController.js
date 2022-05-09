@@ -30,14 +30,14 @@ const signupPost = async (req, res) => {
 								name,
 								email,
 								password: hashPassword,
-								picture: profileUrl
+								profilePic: profileUrl
 							});
 
 							// save that document into mongoDB
 							await document.save();
 
 							// create token
-							const checkExist = await userModel.findOne({ email: email });
+							const checkExist = await userModel.findOne({ email });
 							const token = await jwt.sign(
 								{ id: checkExist._id, email: checkExist.email },
 								process.env.SECRET_KEY,

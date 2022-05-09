@@ -1,9 +1,8 @@
 const TextContainer = ({ obj }) => {
-   
 	return (
 		<>
 			<div className="text-container">
-				<p className={obj.check ? "my-text" : "other"}>{obj.text}</p>
+				<p className={obj.senderID ? "other" : "my-text"}>{obj.message}</p>
 			</div>
 		</>
 	);

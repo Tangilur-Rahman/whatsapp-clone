@@ -1,19 +1,18 @@
 .chat-box-container {
-   overflow: auto;
-   height: 84vh;
+	overflow: auto;
+	height: 80vh;
 }
 
 .text-container {
 	display: flex;
 	flex-direction: column;
-   margin: 9px 12px 0 29px;
-
+	margin: 0px 25px 3px 25px;
 }
 
 .text-container p {
-   padding: 10px;
-   max-width: 50%;
-   border-radius: 4px;
+	padding: 10px;
+	max-width: 50%;
+	border-radius: 4px;
 }
 
 .my-text {

@@ -1,10 +1,13 @@
-import "./WriteBox.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+/* eslint-disable no-unused-vars */
 import { faFaceGrinHearts } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Picker from "emoji-picker-react";
 import { useState } from "react";
+import "./MessageBox.css";
 
-const WriteBox = () => {
+const MessageBox = (props) => {
+	const { messages, setMessages } = props.setMessages;
+
 	const [chosenEmoji, setChosenEmoji] = useState(null);
 	const [toggle, setToggle] = useState(false);
 	const [message, setMessage] = useState("");
@@ -13,23 +16,47 @@ const WriteBox = () => {
 		setChosenEmoji(emojiObject);
 		setMessage(message + emojiObject.emoji);
 		setToggle(false);
-		
 	};
 
 	const onChange = (event) => {
 		setMessage(event.target.value);
 	};
 
-	const submitHandler = (event) => {
+	const clickHandler = (event) => {
 		event.preventDefault();
+
+		setMessages([
+			...messages,
+			{
+				id: 0,
+				messageType: "TEXT",
+				message,
+				senderID: 0,
+				addedOn: "12:01 PM"
+			}
+		]);
 	};
 
-	console.log(message);
+	const onEnterPress = (event) => {
+		if (event.key === "Enter") {
+			setMessages([
+				...messages,
+				{
+					id: 0,
+					messageType: "TEXT",
+					message,
+					senderID: 0,
+					addedOn: "12:01 PM"
+				}
+			]);
+		}
+	};
+
 	return (
 		<div className="container-fluid p-0 ">
 			<div className="row m-0">
 				<div className="col write-box-container">
-					<form onSubmit={submitHandler}>
+					<form>
 						<div className="write-box">
 							{toggle && (
 								<Picker
@@ -37,7 +64,7 @@ const WriteBox = () => {
 									pickerStyle={{
 										position: "absolute",
 										bottom: "60px",
-										width: "50%",
+										width: "50%"
 									}}
 									className="emoji"
 								/>
@@ -58,10 +85,15 @@ const WriteBox = () => {
 								onChange={onChange}
 								autoComplete="off"
 								value={message}
+								onKeyDown={onEnterPress}
 							/>
 						</div>
 
-						<button className="btn btn-success" type="submit">
+						<button
+							className="btn btn-success"
+							type="submit"
+							onClick={clickHandler}
+						>
 							Send
 						</button>
 					</form>
@@ -71,4 +103,4 @@ const WriteBox = () => {
 	);
 };
 
-export default WriteBox;
+export default MessageBox;

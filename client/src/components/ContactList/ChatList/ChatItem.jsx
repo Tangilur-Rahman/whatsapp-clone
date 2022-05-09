@@ -1,9 +1,9 @@
-const ChatItem = ({obj}) => {
+const ChatItem = ({ obj, setSelectedChat }) => {
+	const { name, profilePic, lastText, lastTextTime } = obj;
 
-	const {name,profilePic,lastText,lastTextTime} = obj;
 	return (
 		<>
-			<div className="chat-item">
+			<div className="chat-item" onClick={()=> setSelectedChat(obj)}>
 				<div className="profile">
 					<img src={profilePic} alt="chat-item-logo" />
 					<div className="details">

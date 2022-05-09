@@ -11,7 +11,7 @@ const loginPost = async (req, res) => {
 
 	if (email && password) {
 		try {
-			const checkExist = await userModel.findOne({ email: email });
+			const checkExist = await userModel.findOne({ email });
 
 			const comparePassword = await bcrypt.compare(
 				password,

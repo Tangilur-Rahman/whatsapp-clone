@@ -2,12 +2,13 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { GoogleLogin } from "react-google-login";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AccountPage.css";
 
-const HomePage = () => {
+const AccountPage = () => {
 	// navigate
 	const Navigate = useNavigate();
 
@@ -75,7 +76,7 @@ const HomePage = () => {
 		} else {
 			const { name, email, password, c_password } = signupData;
 			if (name && email && password && c_password) {
-				toast("Didn't Upload Profile Image 📷", {
+				toast("create account without profile pic 📷", {
 					position: "top-right",
 					autoClose: 2000,
 					theme: "dark"
@@ -209,6 +210,26 @@ const HomePage = () => {
 		}
 	};
 
+	// login with google
+	const responseGoogle = (response) => {
+		if (response) {
+			toast("Welcome to our page ❤️", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
+			setTimeout(() => {
+				return Navigate("/dashboard");
+			}, 3000);
+		} else {
+			toast("Bad response from Google, Try Another way😏", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
+		}
+	};
+
 	return (
 		<>
 			<div className="homepage-container">
@@ -327,6 +348,15 @@ const HomePage = () => {
 								As A Guest
 							</button>
 						</form>
+						<div id="google-btn">
+							<GoogleLogin
+								clientId="146115194589-1mnrksqbave9cqjk556453mlvd2680ei.apps.googleusercontent.com"
+								buttonText="Login With Google"
+								onSuccess={responseGoogle}
+								onFailure={responseGoogle}
+								cookiePolicy={"single_host_origin"}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -335,4 +365,4 @@ const HomePage = () => {
 	);
 };
 
-export default HomePage;
+export default AccountPage;

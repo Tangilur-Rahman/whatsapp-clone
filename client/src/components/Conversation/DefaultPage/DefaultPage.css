@@ -1,0 +1,21 @@
+.default-page-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height: 100vh;
+	color: rgb(235, 222, 222);
+}
+.default-page-container img {
+	border-radius: 50%;
+}
+
+.default-page-container h3 {
+	margin: 16px 0 0 0;
+	letter-spacing: 4px;
+}
+.default-page-container h4 {
+	margin: 8px 0 0 0px;
+	letter-spacing: 1px;
+	color: #ffd60a;
+}

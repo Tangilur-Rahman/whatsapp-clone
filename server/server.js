@@ -1,24 +1,30 @@
 const express = require("express");
+const cookie = require("cookie-parser");
 require("dotenv").config();
 
 // own modules
 require("./config/connectDatabase");
 const signup = require("./router/signup.router");
 const login = require("./router/login.router");
+const users = require("./router/user.router");
+const channel = require("./router/channel.router");
 
 // main router
 const app = express();
 
 // insert request object
 app.use(express.json());
+app.use(cookie());
 
 // sub router
 app.use("/signup", signup);
 app.use("/login", login);
+app.use("/users", users);
+app.use("/dashboard", channel);
 
 // 404 not found error
 app.use((req, res) => {
-	res.status(404).json({ error: "file not found" });
+	res.status(404).json({ error: "File Not Found" });
 });
 
 // custom error handler

@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("./../model/userModel");
 
-const tokenVerify = async (req, res, next) => {
+const verifyToken = async (req, res, next) => {
 	try {
 		const user = await jwt.verify(
 			req.cookies.userSession,
@@ -13,7 +13,7 @@ const tokenVerify = async (req, res, next) => {
 			email: user.email
 		});
 
-		req.userDocument = document;
+		req.verifiedUser = document;
 
 		next();
 	} catch (error) {
@@ -21,4 +21,4 @@ const tokenVerify = async (req, res, next) => {
 	}
 };
 
-module.exports = tokenVerify;
+module.exports = verifyToken;

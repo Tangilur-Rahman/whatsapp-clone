@@ -22,11 +22,12 @@ const userSchema = mongoose.Schema(
 			required: true,
 			min: [8, "password must be in 8 letters"]
 		},
-		picture: {
+		profilePic: {
 			type: String,
-			default: "assets/public/default.png"
+			default: "assets/profile/defaultProfile.png"
 		}
 	},
+
 	{ timestamps: true }
 );
 
