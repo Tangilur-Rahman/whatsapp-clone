@@ -19,7 +19,6 @@ const loginPost = async (req, res) => {
 			);
 
 			if (comparePassword) {
-
 				// create token
 				const token = await jwt.sign(
 					{ id: checkExist._id, email: checkExist.email },
@@ -43,4 +42,4 @@ const loginPost = async (req, res) => {
 	}
 };
 
-module.exports = {loginPost};
+module.exports = { loginPost };

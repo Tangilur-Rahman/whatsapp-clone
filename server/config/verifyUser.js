@@ -15,8 +15,8 @@ const verifyUser = async (req, res, next) => {
 		});
 
 		let google;
-		if(!document){
-			 google = await googleModel.findOne({
+		if (!document) {
+			google = await googleModel.findOne({
 				email: user.email
 			});
 		}

@@ -13,18 +13,15 @@ const searchUser = async (req, res) => {
 			  }
 			: {};
 
-		if(keyword){
+		if (keyword) {
 			const users = await userModel
 				.find(keyword)
 				.find({ _id: { $ne: req.user._id } });
 
 			res.status(200).json(users);
-			
-		}else{
+		} else {
 			res.status(400).json({ error: "Not Found User" });
 		}
-		
-
 	} catch (error) {
 		res.status(500).json({ error: "Not Found Users" });
 	}

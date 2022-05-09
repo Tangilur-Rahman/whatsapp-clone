@@ -67,4 +67,4 @@ const signupPost = async (req, res) => {
 	}
 };
 
-module.exports = {signupPost};
+module.exports = { signupPost };

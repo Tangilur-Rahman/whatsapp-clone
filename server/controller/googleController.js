@@ -23,7 +23,11 @@ const googlePost = async (req, res) => {
 			if (existUser) {
 				res.status(200).json({ message: "Welcome to our page ❤️" });
 			} else {
-				const newUser = await googleModel({ name, email, profilePic:imageUrl });
+				const newUser = await googleModel({
+					name,
+					email,
+					profilePic: imageUrl
+				});
 
 				await newUser.save();
 
