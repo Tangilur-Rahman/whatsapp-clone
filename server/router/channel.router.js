@@ -8,13 +8,11 @@ const {
 	createChannel,
 	messageUpdate
 } = require("./../controller/channelController");
-const verifyToken = require("./../config/verifyToken");
+const verifyUser = require("./../config/verifyUser");
 
-channel.get("/",verifyToken,async(req,res)=>{
-
-	res.status(200).json(req.verifiedUser);
+channel.get("/", verifyUser, (req, res) => {
+	res.status(200).json(req.verifiedUserCustom);
 });
-
 channel.post("/", createChannel);
 
 channel.put("/", messageUpdate);

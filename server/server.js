@@ -8,6 +8,7 @@ const signup = require("./router/signup.router");
 const login = require("./router/login.router");
 const users = require("./router/user.router");
 const channel = require("./router/channel.router");
+const google = require("./router/google.router");
 
 // main router
 const app = express();
@@ -21,6 +22,7 @@ app.use("/signup", signup);
 app.use("/login", login);
 app.use("/users", users);
 app.use("/dashboard", channel);
+app.use("/google", google);
 
 // 404 not found error
 app.use((req, res) => {

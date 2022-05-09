@@ -4,9 +4,9 @@ const express = require("express");
 const users = express.Router();
 
 // own modules
-const verifyToken = require("./../config/verifyToken");
 const searchUser = require("../controller/userController");
+const verifyUser = require("./../config/verifyUser");
 
-users.get("/", verifyToken, searchUser);
+users.get("/", verifyUser, searchUser);
 
 module.exports = users;

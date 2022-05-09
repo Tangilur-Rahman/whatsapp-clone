@@ -4,7 +4,7 @@ const express = require("express");
 const login = express.Router();
 
 // own modules
-const loginPost = require("../controller/loginController");
+const {loginPost} = require("../controller/loginController");
 
 login.post("/", loginPost);
 

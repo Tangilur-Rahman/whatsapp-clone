@@ -211,17 +211,35 @@ const AccountPage = () => {
 	};
 
 	// login with google
-	const responseGoogle = (response) => {
-		if (response) {
-			toast("Welcome to our page ❤️", {
-				position: "top-right",
-				autoClose: 2000,
-				theme: "dark"
+	const responseGoogle = async (responseData) => {
+		const { name, email, imageUrl } = responseData.profileObj;
+
+		try {
+			const response = await fetch("/google", {
+				method: "POST",
+				body: JSON.stringify({ name, email, imageUrl }),
+				headers: { "Content-type": "application/json" }
 			});
-			setTimeout(() => {
-				return Navigate("/dashboard");
-			}, 3000);
-		} else {
+
+			const result = await response.json();
+
+			if (response.status === 200) {
+				toast(result.message, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+				setTimeout(() => {
+					return Navigate("/dashboard");
+				}, 3000);
+			} else {
+				toast(result.error, {
+					position: "top-right",
+					autoClose: 2000,
+					theme: "dark"
+				});
+			}
+		} catch (error) {
 			toast("Bad response from Google, Try Another way😏", {
 				position: "top-right",
 				autoClose: 2000,

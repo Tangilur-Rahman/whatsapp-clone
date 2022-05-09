@@ -4,10 +4,12 @@ import Header from "./Header/Header";
 import SearchBox from "./SearchBox/SearchBox";
 
 const ContactList = (props) => {
+
+	
 	return (
 		<>
 			<div className="container-fluid contact-container p-0 ">
-				<Header />
+				<Header currentUser={props.currentUser}/>
 				<SearchBox />
 				<ChatList setSelectedChat={props.setSelectedChat} />
 			</div>
