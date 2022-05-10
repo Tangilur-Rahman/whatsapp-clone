@@ -21,7 +21,7 @@ app.use(cookie());
 app.use("/signup", signup);
 app.use("/login", login);
 app.use("/users", users);
-app.use("/dashboard", channel);
+app.use("/channel", channel);
 app.use("/google", google);
 
 // 404 not found error

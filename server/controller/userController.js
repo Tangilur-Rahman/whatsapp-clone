@@ -1,8 +1,25 @@
 // own modules
 const userModel = require("./../model/userModel");
 
-// for "/user" get
-const searchUser = async (req, res) => {
+// for "/users" GET
+const getUsers = async (req, res) => {
+	const verifiedUser = req.verifiedUserCustom
+		? req.verifiedUserCustom
+		: req.verifiedUserGoogle;
+
+	try {
+		const documents = await userModel.find({
+			email: { $ne: verifiedUser.email, $ne: "guest@gmail.com" }
+		});
+
+		res.status(200).json(documents);
+	} catch (error) {
+		res.status(500).json({ error: "Server Error! Try Again Latter" });
+	}
+};
+
+// for "/users/search" GET
+const searchUsers = async (req, res) => {
 	try {
 		const keyword = req.query.search
 			? {
@@ -16,7 +33,7 @@ const searchUser = async (req, res) => {
 		if (keyword) {
 			const users = await userModel
 				.find(keyword)
-				.find({ _id: { $ne: req.user._id } });
+				.find({ _id: { $ne: req.verifiedUserCustom._id } });
 
 			res.status(200).json(users);
 		} else {
@@ -27,4 +44,4 @@ const searchUser = async (req, res) => {
 	}
 };
 
-module.exports = searchUser;
+module.exports = { searchUsers, getUsers };

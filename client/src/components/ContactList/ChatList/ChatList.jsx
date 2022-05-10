@@ -1,15 +1,39 @@
+import { useEffect, useState } from "react";
 import ChatItem from "./ChatItem";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ChatList.css";
-import friendList from "./../../../JSON/friendList.json";
 
 const ChatList = (props) => {
+	const [users, setUsers] = useState("");
+
+	const getAllUsers = async () => {
+		try {
+			const response = await fetch("/users");
+
+			const result = await response.json();
+
+			setUsers(result);
+		} catch (error) {
+			toast("Server Error! Try Again Latter 🙏", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
+		}
+	};
+
+	useEffect(() => {
+		getAllUsers();
+	}, []);
+
 	return (
 		<>
 			<div className="container-fluid p-0">
 				<div className="row">
 					<div className="col chat-list-container">
-						{friendList &&
-							friendList.map((value, index) => (
+						{users &&
+							users.map((value, index) => (
 								<ChatItem
 									obj={value}
 									key={index}
@@ -19,6 +43,7 @@ const ChatList = (props) => {
 					</div>
 				</div>
 			</div>
+			<ToastContainer />
 		</>
 	);
 };

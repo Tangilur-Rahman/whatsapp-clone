@@ -4,9 +4,11 @@ const express = require("express");
 const users = express.Router();
 
 // own modules
-const searchUser = require("../controller/userController");
+const { searchUsers, getUsers } = require("../controller/userController");
 const verifyUser = require("./../config/verifyUser");
 
-users.get("/", verifyUser, searchUser);
+users.get("/", verifyUser, getUsers);
+
+users.get("/users/search", verifyUser, searchUsers);
 
 module.exports = users;

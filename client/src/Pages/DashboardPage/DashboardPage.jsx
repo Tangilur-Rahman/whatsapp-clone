@@ -15,11 +15,12 @@ const DashboardPage = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [selectedChat, setSelectedChat] = useState("");
+
 	const [currentUser, setCurrentUser] = useState("");
 
-	const verifyUser = async () => {
+	const verifiedUserCustom = async () => {
 		try {
-			const response = await fetch("/dashboard");
+			const response = await fetch("/channel");
 
 			const result = await response.json();
 
@@ -39,12 +40,16 @@ const DashboardPage = () => {
 				return Navigate("/");
 			}
 		} catch (error) {
-			console.log(error.message);
+			toast("Server Error! Try Again Latter 🙏", {
+				position: "top-right",
+				autoClose: 2000,
+				theme: "dark"
+			});
 		}
 	};
 
 	useEffect(() => {
-		verifyUser();
+		verifiedUserCustom();
 	}, []);
 
 	return (
@@ -61,7 +66,10 @@ const DashboardPage = () => {
 							/>
 						</div>
 						<div className="col-6 col-sm-7 col-md-8 p-0">
-							<Conversation selectedChat={selectedChat} />
+							<Conversation
+								selectedChat={selectedChat}
+								currentUser={currentUser}
+							/>
 						</div>
 					</div>
 				</div>

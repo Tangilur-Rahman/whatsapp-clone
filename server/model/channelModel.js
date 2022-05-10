@@ -4,9 +4,8 @@ const channelScheme = mongoose.Schema(
 	{
 		channelUsers: [
 			{
-				user_id: { type: String, required: true },
-
-				name: { type: String, required: true },
+				name: { type: String },
+				email: { type: String },
 
 				profilePic: {
 					type: String,
@@ -14,9 +13,10 @@ const channelScheme = mongoose.Schema(
 				}
 			}
 		],
+
 		messages: [
 			{
-				senderID: { type: String, required: true },
+				senderEmail: { type: String, default: "" },
 
 				message: { type: String, default: "" },
 

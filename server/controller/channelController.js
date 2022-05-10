@@ -1,25 +1,21 @@
 // own modules
 const channelModel = require("./../model/channelModel");
 
-// for /dashboard post
+// for /channel post
 const createChannel = async (req, res) => {
-	const { id, name, profileUrl } = req.body;
+	const [sender, receiver] = req.body;
 
 	try {
-		if (id && name && senderID) {
+		if (sender && receiver) {
 			const document = await channelModel({
-				channelUsers: [
-					{
-						user_id: id,
-						name,
-						profilePic: profileUrl
-					}
-				]
+				channelUsers: []
 			});
+
+			document.channelUsers = [].concat(sender, receiver);
 
 			await document.save();
 
-			res.status(200).json({ message: "channel created successfully 💚" });
+			res.status(200).json(document);
 		} else {
 			res.status(400).json({ error: "Bad Request 😏" });
 		}
@@ -28,13 +24,14 @@ const createChannel = async (req, res) => {
 	}
 };
 
+// const getMessages =
 const messageUpdate = async (req, res) => {
-	const { channelId, messageArray } = req.body;
+	const { senderEmail, messageObj } = req.body;
 
 	try {
 		await channelModel.updateOne(
-			{ _id: channelId },
-			{ $push: { messages: messageArray } }
+			{ senderEmail },
+			{ $push: { messages: messageObj } }
 		);
 
 		res.status(200).json({ message: "message update successfully 💚" });
