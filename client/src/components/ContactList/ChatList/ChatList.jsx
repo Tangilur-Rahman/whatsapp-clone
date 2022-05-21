@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "./ChatList.css";
 
 const ChatList = (props) => {
+	const { setSelectedChat, searchUser,setMessageList } = props;
+
 	const [users, setUsers] = useState("");
 
 	const getAllUsers = async () => {
@@ -32,14 +34,24 @@ const ChatList = (props) => {
 			<div className="container-fluid p-0">
 				<div className="row">
 					<div className="col chat-list-container">
-						{users &&
-							users.map((value, index) => (
-								<ChatItem
-									obj={value}
-									key={index}
-									setSelectedChat={props.setSelectedChat}
-								/>
-							))}
+						{searchUser
+							? searchUser &&
+							  searchUser.map((value, index) => (
+									<ChatItem
+										obj={value}
+										key={index}
+										setSelectedChat={setSelectedChat}
+										setMessageList = {setMessageList}
+									/>
+							  ))
+							: users &&
+							  users.map((value, index) => (
+									<ChatItem
+										obj={value}
+										key={index}
+										setSelectedChat={setSelectedChat}
+									/>
+							  ))}
 					</div>
 				</div>
 			</div>

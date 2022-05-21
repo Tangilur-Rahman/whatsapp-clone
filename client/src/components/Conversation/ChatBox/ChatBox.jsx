@@ -1,8 +1,10 @@
 import "./ChatBox.css";
 import TextContainer from "./TextContainer";
 
+const ChatBox = ({ messageList, currentUser }) => {
 
-const ChatBox = ({messageList}) => {
+	console.log(messageList)
+	
 	return (
 		<>
 			1
@@ -12,7 +14,7 @@ const ChatBox = ({messageList}) => {
 						{messageList &&
 							messageList.map((value, index) => (
 								<div key={index}>
-									<TextContainer obj={value} />
+									<TextContainer obj={value} currentUser={currentUser} />
 								</div>
 							))}
 					</div>

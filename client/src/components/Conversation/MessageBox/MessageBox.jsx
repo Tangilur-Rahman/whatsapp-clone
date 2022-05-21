@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import { faFaceGrinHearts } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Picker from "emoji-picker-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./MessageBox.css";
@@ -27,11 +28,32 @@ const MessageBox = (props) => {
 		setMessage(event.target.value);
 	};
 
+	// fetching all messages
+	const fetchingMessage = async () => {
+		try {
+			const response = await fetch(
+				`/channel/messages?email=${selectedChat.email}`
+			);
+
+			const result = await response.json();
+
+			console.log(result.messages);
+
+			setMessageList(result.messages);
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
+
+	useEffect(() => {
+		fetchingMessage();
+	}, []);
+
 	const clickHandler = async (event) => {
 		event.preventDefault();
 
+		// create messages
 		if (!messageList || !messageList.length) {
-
 			const channelArray = [
 				{
 					name: currentUser.name,
@@ -53,9 +75,7 @@ const MessageBox = (props) => {
 				});
 
 				const result = await response.json();
-
 				setChannel(result);
-
 			} catch (error) {
 				toast("Server Error! Try Again Latter 🙏", {
 					position: "top-right",
@@ -65,43 +85,42 @@ const MessageBox = (props) => {
 			}
 		}
 
-			try {
-				const response = await fetch("/channel/messages");
+		// get channel
+		try {
+			const response = await fetch(`/channel/?email=${selectedChat.email}`);
 
-				const result = await response.json();
+			const result = await response.json();
 
-				setMessageList(result);
+			setChannel(result);
+		} catch (error) {
+			console.log(error.message);
+		}
 
-				console.log(result)
-				
+		fetchingMessage();
+		// send messages
+		try {
+			const sendMessage = {
+				receiverEmail: currentUser.email,
+				channelID: channel._id,
+				message,
+				addedOn: new Date().getTime()
+			};
 
-			} catch (error) {
-				console.log(error.message);
-			}
+			const response = await fetch("/channel", {
+				method: "PUT",
+				body: JSON.stringify(sendMessage),
+				headers: { "Content-Type": "application/json" }
+			});
 
+			const result = await response.json();
 
-			try {
-				const sendMessage = {
-					senderEmail: currentUser.email,
-					message,
-					addedOn: new Date().getTime()
-				};
+			console.log(result);
 
-				const response = await fetch("/channel", {
-					method: "PUT",
-					body: JSON.stringify(sendMessage),
-					headers: { "Content-Type": "application/json" }
-				});
-
-				const result = await response.json();
-
-				setMessageList([...messageList, sendMessage]);
-			} catch (error) {
-				console.log(error.message);
-			}
-		};
-		console.log(messageList);
-	
+			setMessage("");
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 
 	return (
 		<div className="container-fluid p-0 ">
@@ -149,7 +168,7 @@ const MessageBox = (props) => {
 					</form>
 				</div>
 			</div>
-			<ToastContainer/>
+			<ToastContainer />
 		</div>
 	);
 };

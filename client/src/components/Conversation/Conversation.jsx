@@ -3,10 +3,11 @@ import "./Conversation.css";
 import DefaultPage from "./DefaultPage/DefaultPage";
 import Header from "./Header/Header";
 import MessageBox from "./MessageBox/MessageBox";
-import { useState } from "react";
 
-const Conversation = ({ selectedChat, currentUser }) => {
-	const [messageList, setMessageList] = useState([]);
+
+const Conversation = ({ selectedChat, currentUser,messageListObj }) => {
+
+	const {messageList,setMessageList} = messageListObj;
 
 	return (
 		<>
@@ -14,7 +15,10 @@ const Conversation = ({ selectedChat, currentUser }) => {
 				{selectedChat ? (
 					<>
 						<Header selectedChat={selectedChat} />
-						<ChatBox messageList={messageList} />
+						<ChatBox
+							messageList={messageList}
+							currentUser={currentUser}
+						/>
 						<MessageBox
 							setMessageListObj={{ messageList, setMessageList }}
 							selectedChat={selectedChat}

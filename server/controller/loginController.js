@@ -7,7 +7,6 @@ const userModel = require("./../model/userModel");
 // for /login post
 const loginPost = async (req, res) => {
 	const { email, password } = req.body;
-	console.log(req.body);
 
 	if (email && password) {
 		try {

@@ -1,8 +1,14 @@
-const TextContainer = ({ obj }) => {
+const TextContainer = ({ obj, currentUser }) => {
 	return (
 		<>
 			<div className="text-container">
-				<p className={obj.senderID ? "other" : "my-text"}>{obj.message}</p>
+				<p
+					className={
+						currentUser.email === obj.receiverEmail ? "my-text" : "other"
+					}
+				>
+					{obj.message}
+				</p>
 			</div>
 		</>
 	);

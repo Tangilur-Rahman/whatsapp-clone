@@ -16,7 +16,7 @@ const channelScheme = mongoose.Schema(
 
 		messages: [
 			{
-				senderEmail: { type: String, default: "" },
+				receiverEmail: { type: String, default: "" },
 
 				message: { type: String, default: "" },
 

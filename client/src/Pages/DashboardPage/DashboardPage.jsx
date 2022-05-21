@@ -15,6 +15,7 @@ const DashboardPage = () => {
 
 	const [isLoading, setIsLoading] = useState(true);
 	const [selectedChat, setSelectedChat] = useState("");
+	const [messageList, setMessageList] = useState([]);
 
 	const [currentUser, setCurrentUser] = useState("");
 
@@ -69,6 +70,7 @@ const DashboardPage = () => {
 							<Conversation
 								selectedChat={selectedChat}
 								currentUser={currentUser}
+								messageListObj = {{messageList,setMessageList}}
 							/>
 						</div>
 					</div>

@@ -13,23 +13,27 @@ const verifyUser = require("./../config/verifyUser");
 
 const channelModel = require("./../model/channelModel");
 
-channel.get("/", verifyUser, (req, res) => {
-
+channel.get("/", verifyUser, async (req, res) => {
 	const currentUser = req.verifiedUserCustom || req.verifiedUserGoogle;
 
-	res.status(200).json(currentUser);
+	const document = await channelModel.findOne({
+		"channelUsers[0].email": currentUser.email,
+		"channelUsers[1].email": req.query.email
+	});
+
+
+	res.status(200).json(document);
 });
 
 channel.post("/", createChannel);
 
-channel.get("/messages", async(req,res)=>{
-
-	const senderEmail = req.body;
-	const document = await channelModel.find({email : senderEmail})
+channel.get("/messages", verifyUser, async (req, res) => {
+	const document = await channelModel.findOne({
+		"channelUsers.email": req.query.email
+	});
 
 	res.status(200).json(document);
-
-})
+});
 
 channel.put("/", messageUpdate);
 

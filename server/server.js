@@ -24,6 +24,19 @@ app.use("/users", users);
 app.use("/channel", channel);
 app.use("/google", google);
 
+// submit on heroku
+if (process.env.NODE_ENV == "production") {
+	app.use(express.static("build"));
+
+	app.get("*", (req, res) => {
+		res.sendFile(path.join(__dirname + "/build/index.html"));
+	});
+} else {
+	app.get("/", (req, res) => {
+		res.send("client disconnected");
+	});
+}
+
 // 404 not found error
 app.use((req, res) => {
 	res.status(404).json({ error: "File Not Found" });

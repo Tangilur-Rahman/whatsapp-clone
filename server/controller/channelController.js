@@ -24,14 +24,16 @@ const createChannel = async (req, res) => {
 	}
 };
 
-// const getMessages =
+// const updateMessages =
 const messageUpdate = async (req, res) => {
-	const { senderEmail, messageObj } = req.body;
-
 	try {
+		const { receiverEmail, message, addedOn, channelID } = req.body;
+
+		const messageObj = { receiverEmail, message, addedOn };
+
 		await channelModel.updateOne(
-			{ senderEmail },
-			{ $push: { messages: messageObj } }
+			{ _id: channelID },
+			{ $addToSet: { messages: messageObj } }
 		);
 
 		res.status(200).json({ message: "message update successfully 💚" });
