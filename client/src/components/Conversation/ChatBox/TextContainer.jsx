@@ -1,14 +1,10 @@
 const TextContainer = ({ obj, currentUser }) => {
+	console.log(obj);
+
 	return (
 		<>
 			<div className="text-container">
-				<p
-					className={
-						currentUser.email === obj.receiverEmail ? "my-text" : "other"
-					}
-				>
-					{obj.message}
-				</p>
+				<p className={obj.senderID ? "my-text" : "other"}>{obj.message}</p>
 			</div>
 		</>
 	);

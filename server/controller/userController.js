@@ -12,6 +12,7 @@ const getUsers = async (req, res) => {
 			email: { $ne: verifiedUser.email }
 		});
 
+		
 		res.status(200).json(documents);
 	} catch (error) {
 		res.status(500).json({ error: "Server Error! Try Again Latter" });

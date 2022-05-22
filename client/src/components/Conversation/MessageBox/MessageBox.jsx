@@ -37,8 +37,6 @@ const MessageBox = (props) => {
 
 			const result = await response.json();
 
-			console.log(result.messages);
-
 			setMessageList(result.messages);
 		} catch (error) {
 			console.log(error.message);

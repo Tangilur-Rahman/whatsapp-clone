@@ -21,7 +21,7 @@ const DashboardPage = () => {
 
 	const verifiedUserCustom = async () => {
 		try {
-			const response = await fetch("/channel");
+			const response = await fetch(`/channel?email=${selectedChat.email}`);
 
 			const result = await response.json();
 
@@ -70,7 +70,7 @@ const DashboardPage = () => {
 							<Conversation
 								selectedChat={selectedChat}
 								currentUser={currentUser}
-								messageListObj = {{messageList,setMessageList}}
+								messageListObj={{ messageList, setMessageList }}
 							/>
 						</div>
 					</div>

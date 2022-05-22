@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import "./Header.css";
 
-const Header = ({ currentUser }) => {
+const Header = () => {
+	const [currentUser, setCurrentUser] = useState("");
+
+	const getCurrentUser = async () => {
+		const response = await fetch("/users/currentUser");
+
+		const result = await response.json();
+
+		setCurrentUser(result);
+	};
+
+	useEffect(() => {
+		getCurrentUser();
+	}, []);
+
 	return (
 		<>
 			<div className="container-fluid p-0">

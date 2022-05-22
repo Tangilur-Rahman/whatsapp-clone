@@ -10,12 +10,12 @@ const ContactList = (props) => {
 	return (
 		<>
 			<div className="container-fluid contact-container p-0 ">
-				<Header currentUser={props.currentUser} />
+				<Header />
+
 				<SearchBox setSearchUser={setSearchUser} />
 				<ChatList
 					setSelectedChat={props.setSelectedChat}
 					searchUser={searchUser}
-		
 				/>
 			</div>
 		</>
