@@ -38,7 +38,7 @@ const DashboardPage = () => {
 					});
 				}, 3000);
 
-				return Navigate("/account");
+				return Navigate("/");
 			}
 		} catch (error) {
 			toast("Server Error! Try Again Latter 🙏", {

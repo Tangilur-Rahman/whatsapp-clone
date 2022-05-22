@@ -1,17 +1,15 @@
-import { BrowserRouter, Route, Routes,Navigate } from "react-router-dom";
-import DashboardPage from "./Pages/DashboardPage/DashboardPage";
-import AccountPage from "./Pages/AccountPage/AccountPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import AccountPage from "./Pages/AccountPage/AccountPage";
+import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 
 const App = () => {
 	return (
 		<>
 			<BrowserRouter>
 				<Routes>
-					
-					<Route path="/" element={<Navigate to = "dashboard" />} />
 					<Route path="dashboard" element={<DashboardPage />} />
-					<Route path="/account" element={<AccountPage />} />
+					<Route path="/" element={<AccountPage />} />
 				</Routes>
 			</BrowserRouter>
 		</>
