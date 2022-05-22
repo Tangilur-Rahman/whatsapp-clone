@@ -1,6 +1,7 @@
 const express = require("express");
 const cookie = require("cookie-parser");
 require("dotenv").config();
+const path = require("path");
 
 // own modules
 require("./config/connectDatabase");
